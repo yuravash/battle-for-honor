@@ -1,16 +1,19 @@
-/*
- * Unit
- * @author Yura Vashkiv
- */
-
 package game.modal.entities.units;
 
+/* Libs */
+import java.util.Objects;
 
 import game.modal.entities.Copyable;
 import game.exceptions.entities.units.UnitException;
 
-import java.util.Objects;
 
+/**
+ * Unit - abstract class which realise
+ * characteristics and abilities of all units
+ * @author Yura Vashkiv
+ * @version 1.0
+ * @since 27.04.2019
+ */
 public abstract class Unit implements Copyable{
 
     protected int health;
@@ -20,7 +23,7 @@ public abstract class Unit implements Copyable{
     /* TODO: add price */
     /* TODO: add position */
 
-    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance){
+    Unit(int health, int damage, int radiusOfAttack, int travelDistance){
         this.health = health;
         this.damage = damage;
         this.radiusOfAttack = radiusOfAttack;
