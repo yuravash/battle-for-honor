@@ -1,2 +1,3 @@
-# Strategy game
-No more information about project..
+# Battle For Honor
+Category: _Strategy_\
+Status: _Dev_
