@@ -71,7 +71,6 @@ public abstract class Unit implements Copyable {
         return Objects.hash(id, health, damage, radiusOfAttack, travelDistance);
     }
 
-    /* TODO: change equals */
     @Override
     public boolean equals(Object obj) {
         return this == obj || (this.getClass() == obj.getClass() && this.id == ((Unit)obj).id);
