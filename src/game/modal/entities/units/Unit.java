@@ -4,7 +4,6 @@ package game.modal.entities.units;
 import java.util.Objects;
 
 import game.modal.entities.Copyable;
-import game.exceptions.entities.units.UnitException;
 
 
 /**
@@ -14,8 +13,11 @@ import game.exceptions.entities.units.UnitException;
  * @version 1.0
  * @since 27.04.2019
  */
-public abstract class Unit implements Copyable{
+public abstract class Unit implements Copyable {
 
+    protected static int lastId = 0;
+
+    protected int id;
     protected int health;
     protected int damage;
     protected int radiusOfAttack;
@@ -24,6 +26,7 @@ public abstract class Unit implements Copyable{
     /* TODO: add position */
 
     Unit(int health, int damage, int radiusOfAttack, int travelDistance){
+        this.id = ++lastId;
         this.health = health;
         this.damage = damage;
         this.radiusOfAttack = radiusOfAttack;
@@ -32,6 +35,14 @@ public abstract class Unit implements Copyable{
     /* TODO: add attacking, decreasing health, moving */
     public boolean isAlive(){
         return health > 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getLastId() {
+        return lastId;
     }
 
     public int getHealth() {
@@ -52,17 +63,17 @@ public abstract class Unit implements Copyable{
 
     @Override
     public String toString() {
-        return "Unit: health="+health+", damage="+damage;
+        return "Unit: id="+id+", health="+health+", damage="+damage;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(health, damage, radiusOfAttack, travelDistance);
+        return Objects.hash(id, health, damage, radiusOfAttack, travelDistance);
     }
 
     /* TODO: change equals */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        return this == obj || (this.getClass() == obj.getClass() && this.id == ((Unit)obj).id);
     }
 }
