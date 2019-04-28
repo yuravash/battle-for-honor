@@ -6,7 +6,7 @@ public abstract class Cell {
     private int posX;
     private int posY;
 
-    public Cell(int posX, int posY) {
+    protected Cell(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }
