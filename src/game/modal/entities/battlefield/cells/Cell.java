@@ -1,4 +1,4 @@
-package game.modal.battlefield.cells;
+package game.modal.entities.battlefield.cells;
 
 
 public abstract class Cell {

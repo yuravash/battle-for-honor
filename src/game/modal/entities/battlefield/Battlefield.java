@@ -1,4 +1,4 @@
-package game.modal.battlefield;
+package game.modal.entities.battlefield;
 
 public class Battlefield {
     private static Battlefield instance;
