@@ -1,16 +1,22 @@
 package game.modal.entities.resources;
 
-import game.exceptions.entities.resources.ResourceTypeException;
 
 import java.util.Objects;
 
+import game.exceptions.entities.resources.ResourceTypeException;
+
+
+
 public abstract class Resource {
 
+
     private int value;
+
 
     protected Resource(int value){
         this.value = value;
     }
+
 
     public int getValue(){
         return value;
@@ -44,5 +50,11 @@ public abstract class Resource {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Resource: value=" + value;
     }
 }
