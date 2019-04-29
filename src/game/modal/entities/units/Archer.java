@@ -1,6 +1,12 @@
 package game.modal.entities.units;
 
 
+import game.modal.entities.resources.Gold;
+import game.modal.entities.resources.Ore;
+import game.modal.entities.resources.ResourceGroup;
+import game.modal.entities.resources.Wood;
+
+
 /**
  * Archer - long distance fighters
  * @author Yura Vashkiv
@@ -9,11 +15,18 @@ package game.modal.entities.units;
  */
 public class Archer extends Unit{
 
+
     /* Unit characteristics */
     public final static int defaultHealth = 100;
     public final static int defaultDamage = 50;
     public final static int defaultRadiusOfAttack = 2;
     public final static int defaultTravelDistance = 1;
+
+
+    public final static ResourceGroup price = new ResourceGroup(
+            new Ore(75), new Gold(100), new Wood(50)
+    );
+
 
     /**
      * Default constructor
@@ -21,6 +34,7 @@ public class Archer extends Unit{
     public Archer(){
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
+
 
     /**
      * Private constructor to copy
@@ -31,6 +45,7 @@ public class Archer extends Unit{
         super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
+
     /**
      * @see game.modal.entities.Copyable
      */
@@ -38,6 +53,7 @@ public class Archer extends Unit{
     public Archer copy() {
         return new Archer(health);
     }
+
 
     @Override
     public String toString() {

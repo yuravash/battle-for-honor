@@ -1,6 +1,13 @@
 package game.modal.entities.units;
 
 
+import game.modal.entities.resources.Gold;
+import game.modal.entities.resources.Ore;
+import game.modal.entities.resources.ResourceGroup;
+import game.modal.entities.resources.Wood;
+
+
+
 /**
  * Knight - melee fighters
  * @author Yura Vashkiv
@@ -9,11 +16,18 @@ package game.modal.entities.units;
  */
 public class Knight extends Unit{
 
+
     /* Unit characteristics */
     public final static int defaultHealth = 150;
     public final static int defaultDamage = 50;
     public final static int defaultRadiusOfAttack = 1;
     public final static int defaultTravelDistance = 1;
+
+
+    public final static ResourceGroup price = new ResourceGroup(
+            new Ore(50), new Gold(100), new Wood(0)
+    );
+
 
     /**
      * Default constructor
@@ -21,6 +35,7 @@ public class Knight extends Unit{
     public Knight(){
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
+
 
     /**
      * Private constructor to copy
@@ -31,6 +46,7 @@ public class Knight extends Unit{
         super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
+
     /**
      * @see game.modal.entities.Copyable
      */
@@ -38,6 +54,7 @@ public class Knight extends Unit{
     public Knight copy() {
         return new Knight(health);
     }
+
 
     @Override
     public String toString() {

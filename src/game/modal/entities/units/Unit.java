@@ -22,7 +22,6 @@ public abstract class Unit implements Copyable {
     protected int damage;
     protected int radiusOfAttack;
     protected int travelDistance;
-    /* TODO: add price */
     /* TODO: add position */
 
     Unit(int health, int damage, int radiusOfAttack, int travelDistance){
