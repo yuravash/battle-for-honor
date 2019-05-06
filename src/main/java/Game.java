@@ -4,10 +4,11 @@
  */
 
 
+import game.modal.entities.battlefield.Battlefield;
+import game.modal.entities.battlefield.BattlefieldType;
 import game.modal.entities.units.Archer;
 import game.modal.entities.units.Cavalry;
 import game.modal.entities.units.Knight;
-import game.modal.entities.units.Unit;
 
 public class Game {
 
@@ -16,7 +17,10 @@ public class Game {
         Archer unit2 = new Archer();
         Cavalry unit3 = new Cavalry();
         System.out.println(unit3);
+        System.out.println(unit2);
+        System.out.println(unit);
 
+        Battlefield.getInstance(BattlefieldType.SMALL);
     }
 
 }

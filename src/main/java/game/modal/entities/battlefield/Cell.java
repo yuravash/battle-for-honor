@@ -39,7 +39,7 @@ public class Cell {
         return "Cell(" +
                 "posX=" + posX +
                 ", posY=" + posY +
-                ", bonusRessources=" + bonusResources +
+                ", bonusResources=" + bonusResources +
                 ')';
     }
 }
