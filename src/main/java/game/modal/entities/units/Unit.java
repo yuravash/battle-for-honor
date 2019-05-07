@@ -4,8 +4,10 @@ package game.modal.entities.units;
 /* Libs */
 import java.util.Objects;
 
-import game.modal.entities.Copyable;
-
+import game.exceptions.entities.battlefield.cell.AccessDeniedException;
+import game.exceptions.entities.battlefield.cell.OccupiedCellException;
+import game.exceptions.entities.units.ExceedDistanceException;
+import game.modal.entities.battlefield.Cell;
 
 
 /**
@@ -15,7 +17,7 @@ import game.modal.entities.Copyable;
  * @version 1.0
  * @since 27.04.2019
  */
-public abstract class Unit implements Copyable {
+public abstract class Unit {
 
 
     protected static int lastId = 0;
@@ -26,20 +28,44 @@ public abstract class Unit implements Copyable {
     protected int damage;
     protected int radiusOfAttack;
     protected int travelDistance;
+    protected Cell position;
 
-    /* TODO: add position */
 
-
-    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance){
+    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance, Cell position) throws OccupiedCellException{
         this.id = ++lastId;
         this.health = health;
         this.damage = damage;
         this.radiusOfAttack = radiusOfAttack;
         this.travelDistance = travelDistance;
+
+        position.setUnit(this);
+        this.position = position;
     }
 
+    /* TODO: add attacking, decreasing health */
 
-    /* TODO: add attacking, decreasing health, moving */
+    /**
+     * Move unit to other cell
+     * @param position New unit position
+     * @throws ExceedDistanceException if exceed distance to cell
+     * @throws OccupiedCellException if new position is occupied by another unit
+     */
+    public void move(Cell position) throws ExceedDistanceException, OccupiedCellException {
+        if (this.position != position) {
+            if (position.getPosX() >= (this.position.getPosX() - travelDistance) &&
+                    position.getPosX() <= (this.position.getPosX() + travelDistance) &&
+                    position.getPosY() >= (this.position.getPosY() - travelDistance) &&
+                    position.getPosY() <= (this.position.getPosY() + travelDistance)) {
+
+                position.setUnit(this);
+                try {this.position.removeUnit(this);} catch (AccessDeniedException e) {}
+                this.position = position;
+
+            } else {
+                throw new ExceedDistanceException();
+            }
+        }
+    }
 
 
     public boolean isAlive(){
@@ -76,6 +102,9 @@ public abstract class Unit implements Copyable {
         return travelDistance;
     }
 
+    public Cell getPosition() {
+        return position;
+    }
 
     @Override
     public String toString() {

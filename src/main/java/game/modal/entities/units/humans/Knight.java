@@ -1,6 +1,8 @@
 package game.modal.entities.units.humans;
 
 
+import game.exceptions.entities.battlefield.cell.OccupiedCellException;
+import game.modal.entities.battlefield.Cell;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
@@ -30,29 +32,11 @@ public class Knight extends Unit {
 
 
     /**
-     * Default constructor
+     * Constructor
+     * @param position Unit position
      */
-    public Knight(){
-        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * Private constructor to copy
-     * an object by method copy()
-     * @param health This is current health count
-     */
-    private Knight(int health){
-        super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * @see game.modal.entities.Copyable
-     */
-    @Override
-    public Knight copy() {
-        return new Knight(health);
+    public Knight(Cell position) throws OccupiedCellException{
+        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position);
     }
 
 

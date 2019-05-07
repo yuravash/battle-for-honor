@@ -1,5 +1,7 @@
 package game.modal.entities.units.orcs;
 
+import game.exceptions.entities.battlefield.cell.OccupiedCellException;
+import game.modal.entities.battlefield.Cell;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
@@ -29,34 +31,16 @@ public class Rider extends Unit {
 
 
     /**
-     * Default constructor
+     * Constructor
+     * @param position Unit position
      */
-    public Rider(){
-        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * Private constructor to copy
-     * an object by method copy()
-     * @param health This is current health count
-     */
-    private Rider(int health){
-        super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * @see game.modal.entities.Copyable
-     */
-    @Override
-    public Rider copy() {
-        return new Rider(health);
+    public Rider(Cell position) throws OccupiedCellException{
+        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position);
     }
 
 
     @Override
     public String toString() {
-        return "Berserk("+super.toString()+")";
+        return "Rider("+super.toString()+")";
     }
 }

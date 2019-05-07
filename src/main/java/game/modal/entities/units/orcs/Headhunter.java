@@ -1,5 +1,7 @@
 package game.modal.entities.units.orcs;
 
+import game.exceptions.entities.battlefield.cell.OccupiedCellException;
+import game.modal.entities.battlefield.Cell;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
@@ -28,29 +30,11 @@ public class Headhunter extends Unit{
 
 
     /**
-     * Default constructor
+     * Constructor
+     * @param position Unit position
      */
-    public Headhunter(){
-        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * Private constructor to copy
-     * an object by method copy()
-     * @param health This is current health count
-     */
-    private Headhunter(int health){
-        super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
-    }
-
-
-    /**
-     * @see game.modal.entities.Copyable
-     */
-    @Override
-    public Headhunter copy() {
-        return new Headhunter(health);
+    public Headhunter(Cell position) throws OccupiedCellException{
+        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position);
     }
 
 
