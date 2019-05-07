@@ -1,4 +1,4 @@
-package game.exceptions.entities.units;
+package game.exceptions.modal.entities.units;
 
 public class UnitException extends Exception {
     public UnitException() {

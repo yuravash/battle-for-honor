@@ -1,4 +1,4 @@
-package game.exceptions.entities.resources;
+package game.exceptions.modal.entities.resources;
 
 public class ResourceTypeException extends Exception{
     public ResourceTypeException(){

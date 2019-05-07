@@ -1,8 +1,8 @@
 package game.modal.entities.battlefield;
 
 
-import game.exceptions.entities.battlefield.cell.AccessDeniedException;
-import game.exceptions.entities.battlefield.cell.OccupiedCellException;
+import game.exceptions.modal.entities.battlefield.cell.AccessDeniedException;
+import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;

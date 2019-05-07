@@ -1,7 +1,7 @@
 package game.modal.entities.resources;
 
 
-import game.exceptions.entities.resources.ResourceTypeException;
+import game.exceptions.modal.entities.resources.ResourceTypeException;
 
 
 /**

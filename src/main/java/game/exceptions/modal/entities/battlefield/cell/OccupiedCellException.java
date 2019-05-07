@@ -1,4 +1,4 @@
-package game.exceptions.entities.battlefield.cell;
+package game.exceptions.modal.entities.battlefield.cell;
 
 public class OccupiedCellException extends Exception{
     public OccupiedCellException() {

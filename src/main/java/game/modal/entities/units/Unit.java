@@ -4,9 +4,9 @@ package game.modal.entities.units;
 /* Libs */
 import java.util.Objects;
 
-import game.exceptions.entities.battlefield.cell.AccessDeniedException;
-import game.exceptions.entities.battlefield.cell.OccupiedCellException;
-import game.exceptions.entities.units.ExceedDistanceException;
+import game.exceptions.modal.entities.battlefield.cell.AccessDeniedException;
+import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
+import game.exceptions.modal.entities.units.ExceedDistanceException;
 import game.modal.entities.battlefield.Cell;
 
 

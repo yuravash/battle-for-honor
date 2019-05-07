@@ -3,7 +3,7 @@ package game.modal.entities.resources;
 
 import java.util.Objects;
 
-import game.exceptions.entities.resources.ResourceTypeException;
+import game.exceptions.modal.entities.resources.ResourceTypeException;
 
 
 /**

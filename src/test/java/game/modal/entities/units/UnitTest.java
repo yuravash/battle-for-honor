@@ -1,7 +1,7 @@
 package game.modal.entities.units;
 
-import game.exceptions.entities.battlefield.cell.OccupiedCellException;
-import game.exceptions.entities.units.ExceedDistanceException;
+import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
+import game.exceptions.modal.entities.units.ExceedDistanceException;
 import game.modal.entities.battlefield.Cell;
 
 import game.modal.entities.units.humans.Archer;
