@@ -1,37 +1,38 @@
-package game.modal.entities.units;
+package game.modal.entities.units.humans;
 
 
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
 import game.modal.entities.resources.Wood;
+import game.modal.entities.units.Unit;
 
 
 /**
- * Archer - long distance fighters
+ * Knight - melee fighters
  * @author Yura Vashkiv
  * @version 1.0
  * @since 27.04.2019
  */
-public class Archer extends Unit{
+public class Knight extends Unit {
 
 
     /* Unit characteristics */
-    public final static int defaultHealth = 100;
+    public final static int defaultHealth = 150;
     public final static int defaultDamage = 50;
-    public final static int defaultRadiusOfAttack = 2;
+    public final static int defaultRadiusOfAttack = 1;
     public final static int defaultTravelDistance = 1;
 
 
     public final static ResourceGroup price = new ResourceGroup(
-            new Ore(75), new Gold(100), new Wood(50)
+            new Ore(50), new Gold(100), new Wood(0)
     );
 
 
     /**
      * Default constructor
      */
-    public Archer(){
+    public Knight(){
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
@@ -41,7 +42,7 @@ public class Archer extends Unit{
      * an object by method copy()
      * @param health This is current health count
      */
-    private Archer(int health){
+    private Knight(int health){
         super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
@@ -50,13 +51,13 @@ public class Archer extends Unit{
      * @see game.modal.entities.Copyable
      */
     @Override
-    public Archer copy() {
-        return new Archer(health);
+    public Knight copy() {
+        return new Knight(health);
     }
 
 
     @Override
     public String toString() {
-        return "Archer("+super.toString()+")";
+        return "Knight("+super.toString()+")";
     }
 }

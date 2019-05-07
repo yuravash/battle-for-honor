@@ -30,7 +30,7 @@ public abstract class Unit implements Copyable {
     /* TODO: add position */
 
 
-    Unit(int health, int damage, int radiusOfAttack, int travelDistance){
+    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance){
         this.id = ++lastId;
         this.health = health;
         this.damage = damage;

@@ -1,27 +1,26 @@
-package game.modal.entities.units;
-
+package game.modal.entities.units.orcs;
 
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
 import game.modal.entities.resources.Wood;
-
+import game.modal.entities.units.Unit;
 
 
 /**
- * Knight - melee fighters
+ * Rider - strong melee fighters,
+ * special ability - travel distance equals 2 cells
  * @author Yura Vashkiv
  * @version 1.0
- * @since 27.04.2019
+ * @since 07.05.2019
  */
-public class Knight extends Unit{
-
+public class Rider extends Unit {
 
     /* Unit characteristics */
-    public final static int defaultHealth = 150;
-    public final static int defaultDamage = 50;
+    public final static int defaultHealth = 125;
+    public final static int defaultDamage = 125;
     public final static int defaultRadiusOfAttack = 1;
-    public final static int defaultTravelDistance = 1;
+    public final static int defaultTravelDistance = 2;
 
 
     public final static ResourceGroup price = new ResourceGroup(
@@ -32,7 +31,7 @@ public class Knight extends Unit{
     /**
      * Default constructor
      */
-    public Knight(){
+    public Rider(){
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
@@ -42,7 +41,7 @@ public class Knight extends Unit{
      * an object by method copy()
      * @param health This is current health count
      */
-    private Knight(int health){
+    private Rider(int health){
         super(health, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance);
     }
 
@@ -51,13 +50,13 @@ public class Knight extends Unit{
      * @see game.modal.entities.Copyable
      */
     @Override
-    public Knight copy() {
-        return new Knight(health);
+    public Rider copy() {
+        return new Rider(health);
     }
 
 
     @Override
     public String toString() {
-        return "Knight("+super.toString()+")";
+        return "Berserk("+super.toString()+")";
     }
 }
