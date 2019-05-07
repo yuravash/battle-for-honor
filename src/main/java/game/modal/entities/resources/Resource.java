@@ -6,7 +6,13 @@ import java.util.Objects;
 import game.exceptions.entities.resources.ResourceTypeException;
 
 
-
+/**
+ * Resource - abstract class which realise
+ * operation add, sub, equals for all resource types
+ * @author Yura Vashkiv
+ * @version 1.0
+ * @since 07.05.2019
+ */
 public abstract class Resource {
 
 

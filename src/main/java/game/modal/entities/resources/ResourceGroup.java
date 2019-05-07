@@ -5,11 +5,21 @@ import game.exceptions.entities.resources.ResourceTypeException;
 
 import java.util.Objects;
 
+
+/**
+ * ResourceGroup - contains resources
+ * Gold, Ore, Wood and can be used like
+ * price, balance of player and etc
+ * @author Yura Vashkiv
+ * @version 1.0
+ * @since 07.05.2019
+ */
 public class ResourceGroup {
 
     private Ore ore;
     private Gold gold;
     private Wood wood;
+
 
     public ResourceGroup(Ore ore, Gold gold, Wood wood) {
         this.ore = ore;
@@ -17,17 +27,21 @@ public class ResourceGroup {
         this.wood = wood;
     }
 
+
     public Ore getOre() {
         return ore;
     }
+
 
     public Gold getGold() {
         return gold;
     }
 
+
     public Wood getWood() {
         return wood;
     }
+
 
     public ResourceGroup add(ResourceGroup resourceGroup){
         try {
@@ -38,6 +52,7 @@ public class ResourceGroup {
         return this;
     }
 
+
     public ResourceGroup sub(ResourceGroup resourceGroup){
         try {
             this.gold.sub(resourceGroup.gold);
@@ -47,17 +62,20 @@ public class ResourceGroup {
         return this;
     }
 
+
     public boolean greater(ResourceGroup resourceGroup){
         return this.gold.getValue() > resourceGroup.gold.getValue() &&
                 this.ore.getValue() > resourceGroup.ore.getValue() &&
                 this.wood.getValue() > resourceGroup.wood.getValue();
     }
 
+
     public boolean less(ResourceGroup resourceGroup){
         return this.gold.getValue() < resourceGroup.gold.getValue() &&
                 this.ore.getValue() < resourceGroup.ore.getValue() &&
                 this.wood.getValue() < resourceGroup.wood.getValue();
     }
+
 
     @Override
     public String toString() {
@@ -68,6 +86,7 @@ public class ResourceGroup {
                 ')';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +96,7 @@ public class ResourceGroup {
                 gold.equals(that.gold) &&
                 wood.equals(that.wood);
     }
+
 
     @Override
     public int hashCode() {

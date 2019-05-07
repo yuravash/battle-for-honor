@@ -4,7 +4,12 @@ package game.modal.entities.resources;
 import game.exceptions.entities.resources.ResourceTypeException;
 
 
-
+/**
+ * Ore - resource
+ * @author Yura Vashkiv
+ * @version 1.0
+ * @since 07.05.2019
+ */
 public class Ore extends Resource{
 
 

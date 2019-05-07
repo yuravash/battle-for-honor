@@ -4,7 +4,12 @@ package game.modal.entities.resources;
 import game.exceptions.entities.resources.ResourceTypeException;
 
 
-
+/**
+ * Gold - resource
+ * @author Yura Vashkiv
+ * @version 1.0
+ * @since 07.05.2019
+ */
 public class Gold extends Resource {
 
 
