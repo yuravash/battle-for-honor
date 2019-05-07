@@ -1,8 +1,9 @@
 package game.modal.entities.resources;
 
 
-import java.util.Objects;
+import game.exceptions.entities.resources.ResourceTypeException;
 
+import java.util.Objects;
 
 public class ResourceGroup {
 
@@ -26,6 +27,24 @@ public class ResourceGroup {
 
     public Wood getWood() {
         return wood;
+    }
+
+    public ResourceGroup add(ResourceGroup resourceGroup){
+        try {
+            this.gold.add(resourceGroup.gold);
+            this.ore.add(resourceGroup.ore);
+            this.wood.add(resourceGroup.wood);
+        }catch (ResourceTypeException e){}
+        return this;
+    }
+
+    public ResourceGroup sub(ResourceGroup resourceGroup){
+        try {
+            this.gold.sub(resourceGroup.gold);
+            this.ore.sub(resourceGroup.ore);
+            this.wood.sub(resourceGroup.wood);
+        }catch (ResourceTypeException e){}
+        return this;
     }
 
     public boolean greater(ResourceGroup resourceGroup){

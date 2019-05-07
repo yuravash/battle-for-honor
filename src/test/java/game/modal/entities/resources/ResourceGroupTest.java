@@ -128,4 +128,20 @@ class ResourceGroupTest {
                 resourceGroup.hashCode()
         );
     }
+
+    @Test
+    void add() {
+        ResourceGroup tmp = new ResourceGroup(
+                new Ore(1), new Gold(1), new Wood(1)
+        );
+        assertEquals(tmp, resourceGroup.add(tmp));
+    }
+
+    @Test
+    void sub() {
+        ResourceGroup tmp = new ResourceGroup(
+                new Ore(1), new Gold(1), new Wood(1)
+        );
+        assertEquals(tmp, tmp.sub(resourceGroup));
+    }
 }
