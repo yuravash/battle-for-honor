@@ -119,4 +119,58 @@ class UnitTest {
         assertEquals(unit_1, unit_3);
         assertNotEquals(unit_1, unit_2);
     }
+
+    @Test
+    void getId(){
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertEquals(unit_1.id, unit_1.getId());
+    }
+
+
+    @Test
+    void getHealth() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertEquals(Knight.defaultHealth, unit_1.getHealth());
+    }
+
+    @Test
+    void getDamage() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertEquals(Knight.defaultDamage, unit_1.getDamage());
+    }
+
+    @Test
+    void getRadiusOfAttack() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertEquals(Knight.defaultRadiusOfAttack, unit_1.getRadiusOfAttack());
+    }
+
+    @Test
+    void getTravelDistance() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertEquals(Knight.defaultTravelDistance, unit_1.getTravelDistance());
+    }
+
+    @Test
+    void getPosition() {
+        Cell tmp_cell_11 = new Cell(1,1);
+        assertDoesNotThrow(() -> unit_1 = new Knight(tmp_cell_11));
+        assertSame(tmp_cell_11, unit_1.getPosition());
+    }
+
+    @Test
+    void isAlive() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertTrue(unit_1.isAlive());
+
+        unit_1.health = 0;
+        assertFalse(unit_1.isAlive());
+    }
+
+    @Test
+    void hashCodeTest() {
+        assertDoesNotThrow(() -> unit_1 = new Knight(new Cell(0,0)));
+        assertDoesNotThrow(() -> unit_2 = new Knight(new Cell(0,0)));
+        assertNotEquals(unit_2.hashCode(), unit_1.hashCode());
+    }
 }
