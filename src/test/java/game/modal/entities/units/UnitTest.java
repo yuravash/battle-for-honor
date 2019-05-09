@@ -11,6 +11,7 @@ import game.modal.entities.units.humans.Knight;
 import game.modal.entities.units.orcs.Berserk;
 import game.modal.entities.units.orcs.Headhunter;
 import game.modal.entities.units.orcs.Rider;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
