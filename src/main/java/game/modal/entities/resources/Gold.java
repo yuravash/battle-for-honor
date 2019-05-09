@@ -2,6 +2,7 @@ package game.modal.entities.resources;
 
 
 import game.exceptions.modal.entities.resources.ResourceTypeException;
+import game.modal.entities.Copyable;
 
 
 /**
@@ -38,5 +39,11 @@ public class Gold extends Resource {
     @Override
     public String toString() {
         return "Gold("+super.toString()+")";
+    }
+
+    
+    @Override
+    public Gold copy() {
+        return new Gold(value);
     }
 }

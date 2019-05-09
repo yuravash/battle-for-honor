@@ -39,4 +39,10 @@ public class Wood extends Resource{
     public String toString() {
         return "Wood("+super.toString()+")";
     }
+
+
+    @Override
+    public Wood copy(){
+        return new Wood(value);
+    }
 }

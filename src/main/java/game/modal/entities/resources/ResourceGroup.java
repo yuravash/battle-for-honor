@@ -2,6 +2,7 @@ package game.modal.entities.resources;
 
 
 import game.exceptions.modal.entities.resources.ResourceTypeException;
+import game.modal.entities.Copyable;
 
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 07.05.2019
  */
-public class ResourceGroup {
+public class ResourceGroup implements Copyable {
 
     private Ore ore;
     private Gold gold;
@@ -101,5 +102,15 @@ public class ResourceGroup {
     @Override
     public int hashCode() {
         return Objects.hash(ore, gold, wood);
+    }
+
+
+    @Override
+    public ResourceGroup copy() {
+        return new ResourceGroup(
+                new Ore(ore.value),
+                new Gold(gold.value),
+                new Wood(wood.value)
+        );
     }
 }

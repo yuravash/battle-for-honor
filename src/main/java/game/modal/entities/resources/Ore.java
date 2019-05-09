@@ -2,6 +2,7 @@ package game.modal.entities.resources;
 
 
 import game.exceptions.modal.entities.resources.ResourceTypeException;
+import game.modal.entities.Copyable;
 
 
 /**
@@ -38,5 +39,11 @@ public class Ore extends Resource{
     @Override
     public String toString() {
         return "Ore("+super.toString()+")";
+    }
+
+
+    @Override
+    public Ore copy() {
+        return new Ore(value);
     }
 }

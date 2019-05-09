@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import game.exceptions.modal.entities.resources.ResourceTypeException;
 
+import game.modal.entities.Copyable;
+
 
 /**
  * Resource - abstract class which realise
@@ -13,10 +15,10 @@ import game.exceptions.modal.entities.resources.ResourceTypeException;
  * @version 1.0
  * @since 07.05.2019
  */
-public abstract class Resource {
+public abstract class Resource implements Copyable {
 
 
-    private int value;
+    protected int value;
 
 
     protected Resource(int value){
