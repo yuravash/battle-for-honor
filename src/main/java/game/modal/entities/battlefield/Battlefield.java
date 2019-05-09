@@ -6,6 +6,7 @@ public class Battlefield {
     private static Battlefield instance;
 
     private ArrayList<ArrayList<Cell>> cells = new ArrayList<>();
+    private BattlefieldType type;
     private int size;
 
     public synchronized static Battlefield getInstance(BattlefieldType battlefieldType) {
@@ -16,6 +17,8 @@ public class Battlefield {
     }
 
     private Battlefield(BattlefieldType battlefieldType) {
+
+        type = battlefieldType;
 
         switch(battlefieldType){
             case SMALL:
@@ -33,10 +36,13 @@ public class Battlefield {
             ArrayList<Cell> row = new ArrayList<>();
             for (int j = 1; j <= size; j++) {
                 Cell cell = new Cell(i, j);
-                System.out.println(cell);
                 row.add(cell);
             }
             cells.add(row);
         }
+    }
+
+    public static void reset(){
+        instance = null;
     }
 }
