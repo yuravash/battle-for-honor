@@ -52,4 +52,11 @@ class WoodTest {
         assertEquals(new Wood().toString(), wood.toString());
     }
 
+    @Test
+    void copy(){
+        Wood tmp = new Wood();
+        Wood copy = tmp.copy();
+        assertEquals(copy, tmp);
+        assertNotSame(copy, tmp);
+    }
 }

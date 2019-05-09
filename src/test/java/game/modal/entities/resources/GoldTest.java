@@ -51,4 +51,12 @@ class GoldTest {
     void toStr() {
         assertEquals(new Gold().toString(), gold.toString());
     }
+
+    @Test
+    void copy(){
+        Gold tmp = new Gold();
+        Gold copy = tmp.copy();
+        assertEquals(copy, tmp);
+        assertNotSame(copy, tmp);
+    }
 }

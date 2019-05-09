@@ -144,4 +144,14 @@ class ResourceGroupTest {
         );
         assertEquals(tmp, tmp.sub(resourceGroup));
     }
+
+    @Test
+    void copy(){
+        ResourceGroup tmp = new ResourceGroup(
+                new Ore(1), new Gold(1), new Wood(1)
+        );
+        ResourceGroup copy = tmp.copy();
+        assertEquals(copy, tmp);
+        assertNotSame(copy, tmp);
+    }
 }

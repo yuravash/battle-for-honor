@@ -51,4 +51,12 @@ class OreTest {
     void toStr() {
         assertEquals(new Ore().toString(), ore.toString());
     }
+
+    @Test
+    void copy(){
+        Ore tmp = new Ore();
+        Ore copy = tmp.copy();
+        assertEquals(copy, tmp);
+        assertNotSame(copy, tmp);
+    }
 }
