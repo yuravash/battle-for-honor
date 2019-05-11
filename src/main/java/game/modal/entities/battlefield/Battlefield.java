@@ -16,6 +16,10 @@ public class Battlefield {
         return instance;
     }
 
+    public static void reset(){
+        instance = null;
+    }
+
     private Battlefield(BattlefieldType battlefieldType) {
 
         type = battlefieldType;
@@ -42,7 +46,10 @@ public class Battlefield {
         }
     }
 
-    public static void reset(){
-        instance = null;
+    public Cell getCell(int posY, int posX){
+        if (posY > 0 && posY <= size && posX > 0 && posX <= size){
+            return cells.get(posY).get(posX);
+        }
+        return null;
     }
 }
