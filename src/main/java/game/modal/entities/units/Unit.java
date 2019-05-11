@@ -8,6 +8,7 @@ import game.exceptions.modal.entities.battlefield.cell.AccessDeniedException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.exceptions.modal.entities.units.ExceedDistanceException;
 import game.modal.entities.battlefield.Cell;
+import game.modal.factories.characteristics.CharacteristicsFactory;
 
 
 /**
@@ -25,24 +26,22 @@ public abstract class Unit {
 
     protected int id;
     protected int health;
-    protected int damage;
-    protected int radiusOfAttack;
-    protected int travelDistance;
+
+    protected Characteristics characteristics;
+
     protected Cell position;
 
 
     protected Unit(int health, int damage, int radiusOfAttack, int travelDistance, Cell position) throws OccupiedCellException{
         this.id = ++lastId;
         this.health = health;
-        this.damage = damage;
-        this.radiusOfAttack = radiusOfAttack;
-        this.travelDistance = travelDistance;
+        this.characteristics = CharacteristicsFactory.getInstance()
+                .getCharacteristics(damage, radiusOfAttack, travelDistance);
 
         position.setUnit(this);
         this.position = position;
     }
 
-    /* TODO: add attacking, decreasing health */
 
     /**
      * Move unit to other cell
@@ -52,10 +51,10 @@ public abstract class Unit {
      */
     public void move(Cell position) throws ExceedDistanceException, OccupiedCellException {
         if (this.position != position) {
-            if (position.getPosX() >= (this.position.getPosX() - travelDistance) &&
-                    position.getPosX() <= (this.position.getPosX() + travelDistance) &&
-                    position.getPosY() >= (this.position.getPosY() - travelDistance) &&
-                    position.getPosY() <= (this.position.getPosY() + travelDistance)) {
+            if (position.getPosX() >= (this.position.getPosX() - characteristics.getTravelDistance()) &&
+                    position.getPosX() <= (this.position.getPosX() + characteristics.getTravelDistance()) &&
+                    position.getPosY() >= (this.position.getPosY() - characteristics.getTravelDistance()) &&
+                    position.getPosY() <= (this.position.getPosY() + characteristics.getTravelDistance())) {
 
                 position.setUnit(this);
                 try {this.position.removeUnit(this);} catch (AccessDeniedException e) {}
@@ -64,6 +63,28 @@ public abstract class Unit {
             } else {
                 throw new ExceedDistanceException();
             }
+        }
+    }
+
+    public void attack(Unit target) throws ExceedDistanceException{
+        if (target.isAlive()){
+            Cell position = target.position;
+            if (position.getPosX() >= (position.getPosX() - characteristics.getTravelDistance()) &&
+                    position.getPosX() <= (position.getPosX() + characteristics.getRadiusOfAttack()) &&
+                    position.getPosY() >= (position.getPosY() - characteristics.getRadiusOfAttack()) &&
+                    position.getPosY() <= (position.getPosY() + characteristics.getRadiusOfAttack())) {
+                target.attacked(characteristics.getDamage());
+            } else {
+                throw new ExceedDistanceException();
+            }
+        }
+    }
+
+    public void attacked(int damage){
+        health -= damage;
+        if (!isAlive()){
+            try {position.removeUnit(this);} catch (AccessDeniedException e) {}
+            position = null;
         }
     }
 
@@ -89,17 +110,17 @@ public abstract class Unit {
 
 
     public int getDamage() {
-        return damage;
+        return characteristics.getDamage();
     }
 
 
     public int getRadiusOfAttack() {
-        return radiusOfAttack;
+        return characteristics.getRadiusOfAttack();
     }
 
 
     public int getTravelDistance() {
-        return travelDistance;
+        return characteristics.getTravelDistance();
     }
 
     public Cell getPosition() {
@@ -108,13 +129,19 @@ public abstract class Unit {
 
     @Override
     public String toString() {
-        return "Unit: id="+id+", health="+health+", damage="+damage;
+        return "Unit: id="+id+", health="+health+", damage="+characteristics.getDamage();
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, health, damage, radiusOfAttack, travelDistance);
+        return Objects.hash(
+                id,
+                health,
+                characteristics.getDamage(),
+                characteristics.getRadiusOfAttack(),
+                characteristics.getTravelDistance()
+        );
     }
 
 

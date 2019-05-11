@@ -1,8 +1,6 @@
 package game.modal.entities.resources;
 
-
 import game.exceptions.modal.entities.resources.ResourceTypeException;
-import game.modal.entities.Copyable;
 
 
 /**

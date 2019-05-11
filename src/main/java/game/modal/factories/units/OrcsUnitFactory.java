@@ -27,7 +27,4 @@ public class OrcsUnitFactory implements UnitFactory {
         }
         throw new UnitTypeException();
     }
-
-
-
 }
