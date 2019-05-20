@@ -3,6 +3,7 @@ package game.modal.entities.units.humans;
 
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.modal.entities.battlefield.Cell;
+import game.modal.entities.player.Player;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
@@ -35,8 +36,8 @@ public class Archer extends Unit {
      * Constructor
      * @param position Unit position
      */
-    public Archer(Cell position) throws OccupiedCellException{
-        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position);
+    public Archer(Cell position, Player owner) throws OccupiedCellException{
+        super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position, owner);
     }
 
 

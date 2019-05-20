@@ -6,10 +6,11 @@ import game.exceptions.modal.factories.units.UnitTypeException;
 
 import game.modal.entities.battlefield.Cell;
 
+import game.modal.entities.player.Player;
 import game.modal.entities.units.Unit;
 import game.modal.entities.units.UnitType;
 
 
 public interface UnitFactory {
-    Unit getUnit(UnitType unitType, Cell position) throws OccupiedCellException, UnitTypeException;
+    Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException;
 }

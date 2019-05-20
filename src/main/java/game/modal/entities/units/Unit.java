@@ -8,6 +8,7 @@ import game.exceptions.modal.entities.battlefield.cell.AccessDeniedException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.exceptions.modal.entities.units.ExceedDistanceException;
 import game.modal.entities.battlefield.Cell;
+import game.modal.entities.player.Player;
 import game.modal.factories.characteristics.CharacteristicsFactory;
 
 
@@ -31,8 +32,10 @@ public abstract class Unit {
 
     protected Cell position;
 
+    protected Player owner;
 
-    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance, Cell position) throws OccupiedCellException{
+
+    protected Unit(int health, int damage, int radiusOfAttack, int travelDistance, Cell position, Player owner) throws OccupiedCellException{
         this.id = ++lastId;
         this.health = health;
         this.characteristics = CharacteristicsFactory.getInstance()
@@ -40,6 +43,7 @@ public abstract class Unit {
 
         position.setUnit(this);
         this.position = position;
+        this.owner = owner;
     }
 
 
@@ -127,9 +131,13 @@ public abstract class Unit {
         return position;
     }
 
+    public Player getOwner(){
+        return owner;
+    }
+
     @Override
     public String toString() {
-        return "Unit: id="+id+", health="+health+", damage="+characteristics.getDamage();
+        return "Unit: id="+id+", health="+health+", damage="+characteristics.getDamage()+", owner="+owner;
     }
 
 
@@ -140,7 +148,8 @@ public abstract class Unit {
                 health,
                 characteristics.getDamage(),
                 characteristics.getRadiusOfAttack(),
-                characteristics.getTravelDistance()
+                characteristics.getTravelDistance(),
+                owner
         );
     }
 
