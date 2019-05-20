@@ -9,5 +9,5 @@ import game.modal.entities.units.Unit;
 import game.modal.entities.units.UnitType;
 
 public interface UnitFactory {
-    public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException;
+    Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException;
 }

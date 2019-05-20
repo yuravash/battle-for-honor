@@ -21,6 +21,10 @@ import game.modal.factories.units.UnitFactory;
 
 public class OrcsUnitFactoryLvl3 implements UnitFactory {
 
+    private static OrcsUnitFactoryLvl3 instance;
+
+    private OrcsUnitFactoryLvl3(){}
+
     @Override
     public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException {
         if (unitType != null){
@@ -42,4 +46,11 @@ public class OrcsUnitFactoryLvl3 implements UnitFactory {
         throw new UnitTypeException();
     }
 
+
+    public static OrcsUnitFactoryLvl3 getInstance(){
+        if(instance == null){
+            instance = new OrcsUnitFactoryLvl3();
+        }
+        return instance;
+    }
 }

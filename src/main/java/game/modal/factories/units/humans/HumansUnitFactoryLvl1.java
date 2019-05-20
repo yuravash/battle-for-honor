@@ -17,6 +17,10 @@ import game.modal.factories.units.UnitFactory;
 
 public class HumansUnitFactoryLvl1 implements UnitFactory {
 
+    private static HumansUnitFactoryLvl1 instance;
+
+    private HumansUnitFactoryLvl1(){}
+
     @Override
     public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException {
 
@@ -35,5 +39,12 @@ public class HumansUnitFactoryLvl1 implements UnitFactory {
         }
 
         throw new UnitTypeException();
+    }
+
+    public static HumansUnitFactoryLvl1 getInstance(){
+        if(instance == null){
+            instance = new HumansUnitFactoryLvl1();
+        }
+        return instance;
     }
 }
