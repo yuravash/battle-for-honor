@@ -20,9 +20,9 @@ public class Player {
     private RaceType race;
 
     private ResourceGroup balance = new ResourceGroup(
-            new Ore(200),
-            new Gold(200),
-            new Wood(200)
+            new Ore(900),
+            new Gold(900),
+            new Wood(900)
     );
 
     public Player(User user, RaceType race) {

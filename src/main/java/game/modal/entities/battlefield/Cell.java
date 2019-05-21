@@ -3,6 +3,7 @@ package game.modal.entities.battlefield;
 
 import game.exceptions.modal.entities.battlefield.cell.AccessDeniedException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
+import game.modal.entities.buildings.Building;
 import game.modal.entities.resources.Gold;
 import game.modal.entities.resources.Ore;
 import game.modal.entities.resources.ResourceGroup;
@@ -12,13 +13,14 @@ import game.modal.entities.units.Unit;
 import java.util.Random;
 
 
-
 public class Cell {
 
     private int posX;
     private int posY;
 
     private Unit unit = null;
+    private Building building = null;
+
 
     private final ResourceGroup bonusResources = new ResourceGroup(
             new Ore(10*new Random().nextInt(3)),
@@ -32,8 +34,14 @@ public class Cell {
         this.posY = posY;
     }
 
+
     public boolean haveUnit(){
         return unit != null;
+    }
+
+
+    public boolean haveBuilding(){
+        return building != null;
     }
 
 
@@ -46,9 +54,21 @@ public class Cell {
         return posY;
     }
 
+
     public Unit getUnit() {
         return unit;
     }
+
+
+    public Building getBuilding() {
+        return building;
+    }
+
+
+    public ResourceGroup getBonusResources() {
+        return bonusResources.copy();
+    }
+
 
     public void setUnit(Unit unit) throws OccupiedCellException{
         if (!haveUnit()) {
@@ -59,9 +79,29 @@ public class Cell {
         }
     }
 
+
     public void removeUnit(Unit unit) throws AccessDeniedException {
         if (this.unit == unit){
             this.unit = null;
+        }
+        else {
+            throw new AccessDeniedException();
+        }
+    }
+
+    public void setBuilding(Building building) throws OccupiedCellException{
+        if (!haveBuilding()) {
+            this.building = building;
+        }
+        else if (this.building != building){
+            throw new OccupiedCellException();
+        }
+    }
+
+
+    public void removeBuilding(Building building) throws AccessDeniedException {
+        if (this.building == building){
+            this.building = null;
         }
         else {
             throw new AccessDeniedException();
