@@ -5,7 +5,7 @@ import game.modal.entities.battlefield.BattlefieldType;
 import game.modal.entities.player.Player;
 import game.modal.entities.units.RaceType;
 import game.modal.entities.units.Unit;
-import game.modal.entities.user.User;
+import game.services.auth.user.User;
 
 import java.util.ArrayList;
 

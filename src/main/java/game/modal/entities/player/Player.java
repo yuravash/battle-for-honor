@@ -8,7 +8,7 @@ import game.modal.entities.resources.ResourceGroup;
 
 import game.modal.entities.units.RaceType;
 
-import game.modal.entities.user.User;
+import game.services.auth.user.User;
 
 import java.util.Objects;
 

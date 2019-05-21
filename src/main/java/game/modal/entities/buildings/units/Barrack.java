@@ -73,4 +73,12 @@ public class Barrack extends UnitBuilding{
             return price.copy();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Barrack(" +
+                super.toString() +
+                ", lvl=" + lvl +
+                ')';
+    }
 }
