@@ -7,7 +7,7 @@ import game.modal.entities.units.Unit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatchStatisticts {
+public class MatchStatistics {
 
     private int roundCount = 0;
 
@@ -16,7 +16,7 @@ public class MatchStatisticts {
 
     private List<RoundStatistics> rounds = new ArrayList<>();
 
-    public MatchStatisticts(Player player1, Player player2){
+    public MatchStatistics(Player player1, Player player2){
         this.player1 = player1;
         this.player2 = player2;
     }

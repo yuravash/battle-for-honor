@@ -46,10 +46,7 @@ public class Battlefield {
         }
     }
 
-    public Cell getCell(int posY, int posX){
-        if (posY > 0 && posY <= size && posX > 0 && posX <= size){
-            return cells.get(posY).get(posX);
-        }
-        return null;
+    public Cell getCell(int posY, int posX) throws IndexOutOfBoundsException{
+        return cells.get(posY).get(posX);
     }
 }

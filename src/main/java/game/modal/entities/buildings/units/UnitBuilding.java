@@ -1,6 +1,7 @@
 package game.modal.entities.buildings.units;
 
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 
 import game.exceptions.modal.factories.units.AccessDeniedException;
@@ -13,6 +14,7 @@ import game.modal.entities.player.Player;
 import game.modal.entities.units.Unit;
 import game.modal.entities.units.UnitType;
 import game.modal.factories.units.UnitFactory;
+
 
 
 public abstract class UnitBuilding extends Building {
@@ -28,7 +30,7 @@ public abstract class UnitBuilding extends Building {
         this.unitFactory = unitFactory;
     }
 
-    public Unit createUnit(UnitType type, Cell position, Player player) throws OccupiedCellException, UnitTypeException, AccessDeniedException {
+    public Unit createUnit(UnitType type, Player player) throws OccupiedCellException, UnitTypeException, AccessDeniedException, NotEnoughResourcesException {
         return unitFactory.getUnit(type, position, player);
     }
 
