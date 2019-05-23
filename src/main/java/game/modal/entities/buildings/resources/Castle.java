@@ -1,6 +1,7 @@
 package game.modal.entities.buildings.resources;
 
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.modal.entities.battlefield.Cell;
 
@@ -25,8 +26,14 @@ public class Castle extends ResourcesBuilding{
     );
 
 
-    public Castle(Cell position, Player owner) throws OccupiedCellException {
+    public Castle(Cell position, Player owner) throws OccupiedCellException, NotEnoughResourcesException {
         super(defaultHealth, position, owner);
+        if(owner.getBalance().greater(price)){
+            owner.getBalance().sub(price);
+        }
+        else{
+            throw new NotEnoughResourcesException();
+        }
     }
 
 

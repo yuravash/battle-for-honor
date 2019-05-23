@@ -1,6 +1,7 @@
 package game.modal.entities.buildings.resources;
 
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.exceptions.modal.entities.resources.ResourceTypeException;
 import game.modal.entities.battlefield.Cell;
@@ -26,8 +27,14 @@ public class Mine extends ResourcesBuilding{
     );
 
 
-    public Mine(Cell position, Player owner) throws OccupiedCellException {
+    public Mine(Cell position, Player owner) throws OccupiedCellException, NotEnoughResourcesException {
         super(defaultHealth, position, owner);
+        if(owner.getBalance().greater(price)){
+            owner.getBalance().sub(price);
+        }
+        else{
+            throw new NotEnoughResourcesException();
+        }
     }
 
 
