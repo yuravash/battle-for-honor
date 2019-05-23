@@ -1,5 +1,6 @@
 package game.modal.factories.units.orcs;
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.exceptions.modal.factories.units.AccessDeniedException;
 import game.exceptions.modal.factories.units.UnitTypeException;
@@ -24,7 +25,7 @@ public class OrcsUnitFactoryLvl2 implements UnitFactory {
     private OrcsUnitFactoryLvl2(){}
 
     @Override
-    public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException {
+    public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException, NotEnoughResourcesException {
         if (unitType != null){
 
             switch (unitType){
@@ -43,6 +44,7 @@ public class OrcsUnitFactoryLvl2 implements UnitFactory {
 
         throw new UnitTypeException();
     }
+
 
     public static OrcsUnitFactoryLvl2 getInstance(){
         if(instance == null){

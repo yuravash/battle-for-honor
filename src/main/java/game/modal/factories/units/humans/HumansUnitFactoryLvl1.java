@@ -1,5 +1,6 @@
 package game.modal.factories.units.humans;
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.exceptions.modal.factories.units.AccessDeniedException;
 import game.exceptions.modal.factories.units.UnitTypeException;
@@ -22,7 +23,7 @@ public class HumansUnitFactoryLvl1 implements UnitFactory {
     private HumansUnitFactoryLvl1(){}
 
     @Override
-    public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException {
+    public Unit getUnit(UnitType unitType, Cell position, Player owner) throws OccupiedCellException, UnitTypeException, AccessDeniedException, NotEnoughResourcesException {
 
         if (unitType != null){
 
@@ -40,6 +41,7 @@ public class HumansUnitFactoryLvl1 implements UnitFactory {
 
         throw new UnitTypeException();
     }
+
 
     public static HumansUnitFactoryLvl1 getInstance(){
         if(instance == null){

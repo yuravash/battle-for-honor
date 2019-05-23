@@ -1,6 +1,7 @@
 package game.modal.entities.units.humans;
 
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.modal.entities.battlefield.Cell;
 import game.modal.entities.player.Player;
@@ -36,8 +37,14 @@ public class Knight extends Unit {
      * Constructor
      * @param position Unit position
      */
-    public Knight(Cell position, Player owner) throws OccupiedCellException{
+    public Knight(Cell position, Player owner) throws OccupiedCellException, NotEnoughResourcesException{
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position, owner);
+        if(owner.getBalance().greater(price)){
+            owner.getBalance().sub(price);
+        }
+        else{
+            throw new NotEnoughResourcesException();
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package game.modal.entities.units.orcs;
 
+import game.exceptions.modal.entities.NotEnoughResourcesException;
 import game.exceptions.modal.entities.battlefield.cell.OccupiedCellException;
 import game.modal.entities.battlefield.Cell;
 import game.modal.entities.player.Player;
@@ -35,8 +36,14 @@ public class Rider extends Unit {
      * Constructor
      * @param position Unit position
      */
-    public Rider(Cell position, Player owner) throws OccupiedCellException{
+    public Rider(Cell position, Player owner) throws OccupiedCellException, NotEnoughResourcesException {
         super(defaultHealth, defaultDamage, defaultRadiusOfAttack, defaultTravelDistance, position, owner);
+        if(owner.getBalance().greater(price)){
+            owner.getBalance().sub(price);
+        }
+        else{
+            throw new NotEnoughResourcesException();
+        }
     }
 
 
