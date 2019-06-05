@@ -33,7 +33,7 @@ public abstract class Resource implements Copyable {
 
     public Resource add(Resource resource) throws ResourceTypeException{
         if (this.getClass() == resource.getClass()){
-            this.value =+ resource.value;
+            this.value += resource.getValue();
             return this;
         }
         throw new ResourceTypeException();
@@ -42,7 +42,7 @@ public abstract class Resource implements Copyable {
 
     public Resource sub(Resource resource) throws ResourceTypeException{
         if (this.getClass() == resource.getClass()){
-            this.value =- resource.value;
+            this.value -= resource.getValue();
             return this;
         }
         throw new ResourceTypeException();
@@ -51,7 +51,7 @@ public abstract class Resource implements Copyable {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || (this.getClass() == obj.getClass() && this.value == ((Resource)obj).value);
+        return this == obj || (this.getClass() == obj.getClass() && this.getValue() == ((Resource)obj).getValue());
     }
 
 

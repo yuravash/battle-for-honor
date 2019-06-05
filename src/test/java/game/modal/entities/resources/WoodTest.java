@@ -1,62 +1,101 @@
 package game.modal.entities.resources;
 
 import game.exceptions.modal.entities.resources.ResourceTypeException;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.mockito.Mockito;
+
+
 class WoodTest {
 
-    private Wood wood = new Wood();
+    private static int DEFAULT_VALUE = 100;
 
-    @AfterEach
-    void tearDown() {
-        wood = new Wood();
+    private Wood woodWithZeroValue;
+    private Wood woodWithNoZeroValue;
+
+
+    @BeforeEach
+    void setUp() {
+        woodWithZeroValue = new Wood();
+        woodWithNoZeroValue = new Wood(DEFAULT_VALUE);
     }
 
     @Test
-    void addDifferentResources() {
-        assertThrows(ResourceTypeException.class, ()->wood.add(new Ore(1)));
-        assertThrows(ResourceTypeException.class, ()->wood.add(new Gold(1)));
+    void addResourceWithSameType(){
+        Resource resource = new Wood(5);
+
+        assertDoesNotThrow(()->woodWithZeroValue.add(resource));
+        assertEquals(5, woodWithZeroValue.getValue());
     }
 
     @Test
-    void addWood(){
-        assertDoesNotThrow(
-                ()->{
-                    wood.add(new Wood(3));
-                    assertEquals(3, wood.getValue());
-                }
-        );
+    void addResourceWithAnotherType() {
+        Resource mockResource = Mockito.mock(Resource.class);
+        Mockito.when(mockResource.getValue()).thenReturn(1);
+
+        assertThrows(ResourceTypeException.class, ()->woodWithZeroValue.add(mockResource));
+        assertEquals(0, woodWithZeroValue.getValue());
     }
 
     @Test
-    void subDifferentResources() {
-        assertThrows(ResourceTypeException.class, ()->wood.sub(new Ore(1)));
-        assertThrows(ResourceTypeException.class, ()->wood.sub(new Gold(1)));
+    void subResourceWithSameType(){
+        Resource resource = new Wood(5);
+
+        assertDoesNotThrow(()->woodWithNoZeroValue.sub(resource));
+        assertEquals(DEFAULT_VALUE-5, woodWithNoZeroValue.getValue());
     }
 
     @Test
-    void subGold(){
-        assertDoesNotThrow(
-                ()->{
-                    wood.sub(new Wood(3));
-                    assertEquals(-3, wood.getValue());
-                }
-        );
+    void subResourceWithAnotherType() {
+        Resource mockResource = Mockito.mock(Resource.class);
+        Mockito.when(mockResource.getValue()).thenReturn(1);
+
+        assertThrows(ResourceTypeException.class, ()->woodWithNoZeroValue.sub(mockResource));
+        assertEquals(DEFAULT_VALUE, woodWithNoZeroValue.getValue());
     }
 
     @Test
     void toStr() {
-        assertEquals(new Wood().toString(), wood.toString());
+        assertNotNull(woodWithZeroValue.toString());
     }
 
     @Test
-    void copy(){
-        Wood tmp = new Wood();
-        Wood copy = tmp.copy();
-        assertEquals(copy, tmp);
-        assertNotSame(copy, tmp);
+    void copy() {
+        Wood copiedInstance = woodWithNoZeroValue.copy();
+
+        assertNotNull(copiedInstance);
+        assertEquals(copiedInstance, woodWithNoZeroValue);
+        assertNotSame(copiedInstance, woodWithNoZeroValue);
+    }
+
+    @Test
+    void getValue() {
+        assertEquals(0, woodWithZeroValue.getValue());
+        assertEquals(DEFAULT_VALUE, woodWithNoZeroValue.getValue());
+    }
+
+    @Test
+    void equalsResourceWithDifferentType() {
+        Resource resource = Mockito.mock(Resource.class);
+        Mockito.when(resource.getValue()).thenReturn(0);
+
+        assertNotEquals(resource, woodWithZeroValue);
+    }
+
+    @Test
+    void equalsResourceWithSameType() {
+        Wood resource = new Wood();
+
+        assertEquals(resource, woodWithZeroValue);
+        assertNotEquals(resource, woodWithNoZeroValue);
+    }
+
+    @Test
+    void hashCodeTest() {
+        assertEquals(woodWithNoZeroValue.copy().hashCode(), woodWithNoZeroValue.hashCode());
+        assertEquals(woodWithZeroValue.copy().hashCode(), woodWithZeroValue.hashCode());
     }
 }
